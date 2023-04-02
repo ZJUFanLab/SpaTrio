@@ -41,7 +41,7 @@ python setup.py install
 install.packages("doParallel")
 
 # Install SpaTrio package from local file
-install.packages("spatrio_r/SpaTrio_1.0.0.tar.gz", repos = NULL, type = "source")
+install.packages("SpaTrio_1.0.0.tar.gz", repos = NULL, type = "source")
 ```
 
 ## Quick Start
