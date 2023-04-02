@@ -1,0 +1,29 @@
+Package: SpaTrio
+Title: Revealing spatial multimodal heterogeneity in tissues with SpaTrio
+Version: 1.0.0
+Authors@R:
+    person("Penghui", "Yang", email='yangph@zju.edu.cn', role=c('aut', 'cre'))
+Description: This package enables spatial mapping of single-cell multi-omics data for downstream analysis
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    data.table,
+    dplyr,
+    ggpubr,
+    ggplot2,
+    ggsci,
+    reshape2,
+    Seurat,
+    FNN,
+    parallel,
+    doSNOW,
+    foreach,
+    Matrix,
+    pheatmap,
+    doParallel,
+    magrittr
+Remotes:
+  ZJUFanLab/SpaTrio
