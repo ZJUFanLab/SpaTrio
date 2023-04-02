@@ -38,6 +38,7 @@ python setup.py install
 [![R >4.0](https://img.shields.io/badge/R-%3E%3D4.0-brightgreen)](https://www.r-project.org/)
 
 ```
+# Install package from local file
 install.packages("doParallel")
 install.packages("spatrio_r/SpaTrio_1.0.0.tar.gz", repos = NULL, type = "source")
 ```
