@@ -40,7 +40,6 @@ python setup.py install
 ```
 install.packages("doParallel")
 install.packages("spatrio_r/SpaTrio_1.0.0.tar.gz", repos = NULL, type = "source")
-
 ```
 
 ## Quick Start
