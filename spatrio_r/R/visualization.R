@@ -249,12 +249,11 @@ sfplot<-function (object,
 #' @param df.sig Dataframe of significant gene-motif combos for celltypes
 #' @param plot Select the type of gene-motif combos to plot. "sig","pos", or "neg"
 #' @param return_data Whether to return data
-#' @param col Color
 #'
 #' @export
 #'
 #' @import ggplot2
-gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE,col = NULL){
+gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE){
   df.pos <- dplyr::filter(df.sig, corr > 0)
   sig_pos <- unique(df.pos$gene_motif)
   df.neg <- dplyr::filter(df.sig, corr < 0)

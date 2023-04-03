@@ -4,7 +4,7 @@
 \alias{gene_motif_plot}
 \title{Visualization of significant gene-motif combos for celltypes}
 \usage{
-gene_motif_plot(df.sig, plot = "sig", return_data = FALSE, col = NULL)
+gene_motif_plot(df.sig, plot = "sig", return_data = FALSE)
 }
 \arguments{
 \item{df.sig}{Dataframe of significant gene-motif combos for celltypes}
@@ -12,8 +12,6 @@ gene_motif_plot(df.sig, plot = "sig", return_data = FALSE, col = NULL)
 \item{plot}{Select the type of gene-motif combos to plot. "sig","pos", or "neg"}
 
 \item{return_data}{Whether to return data}
-
-\item{col}{Color}
 }
 \description{
 Visualization of significant gene-motif combos for celltypes
