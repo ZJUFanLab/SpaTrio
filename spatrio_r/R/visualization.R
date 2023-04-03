@@ -249,11 +249,12 @@ sfplot<-function (object,
 #' @param df.sig Dataframe of significant gene-motif combos for celltypes
 #' @param plot Select the type of gene-motif combos to plot. "sig","pos", or "neg"
 #' @param return_data Whether to return data
+#' @param col Color
 #'
 #' @export
 #'
 #' @import ggplot2
-gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE){
+gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE,col = NULL){
   df.pos <- dplyr::filter(df.sig, corr > 0)
   sig_pos <- unique(df.pos$gene_motif)
   df.neg <- dplyr::filter(df.sig, corr < 0)
@@ -273,7 +274,7 @@ gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE){
       ylim(c(-max_exp,max_exp)) +
       theme_minimal() +
       geom_hline(yintercept=0,lty=3) +theme_bw(base_rect_size=1)+theme(panel.grid =element_blank())+
-      geom_vline(xintercept=0,lty=3) +scale_color_manual(values =rna_col[levels(df.sig$celltype)])
+      geom_vline(xintercept=0,lty=3)
   }else if(plot=="pos"){
     pearson <- cor.test(df.pos$chromvar, df.pos$rna, method="pearson", conf.level=0.95)
     max_chrom <- max(abs(df.pos$max_chrom)) + 1
@@ -289,7 +290,7 @@ gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE){
       ylim(c(-max_exp,max_exp)) +
       theme_minimal() +
       geom_hline(yintercept=0,lty=3) +theme_bw(base_rect_size=1)+theme(panel.grid =element_blank())+
-      geom_vline(xintercept=0,lty=3) +scale_color_manual(values =rna_col[levels(df.sig$celltype)])
+      geom_vline(xintercept=0,lty=3)
   }else if(plot=="neg"){
     pearson <- cor.test(df.neg$chromvar, df.neg$rna, method="pearson", conf.level=0.95)
     max_chrom <- max(abs(df.neg$max_chrom)) + 1
@@ -305,7 +306,7 @@ gene_motif_plot <- function(df.sig,plot='sig',return_data=FALSE){
       ylim(c(-max_exp,max_exp)) +
       theme_minimal() +
       geom_hline(yintercept=0,lty=3) +theme_bw(base_rect_size=1)+theme(panel.grid =element_blank())+
-      geom_vline(xintercept=0,lty=3) +scale_color_manual(values =rna_col[levels(df.sig$celltype)])
+      geom_vline(xintercept=0,lty=3)
   }
 
   if (return_data) {

@@ -10,11 +10,10 @@
 #' @import dplyr
 gene_motif_analysis <- function(object,motif_gene_df,aver_exp_all=NULL,aver_chromvar_all=NULL){
   motif.ls = motif_gene_df$motif
-  human_gene<-as.data.frame(org.Hs.egSYMBOL)$symbol
   df.ls <- lapply(aver_chromvar_all$gene, function(motif) {
-    print(motif)
+    #print(motif)
     gene <- motif_gene_df[motif_gene_df$motif == motif,]$gene_name
-    print(gene)
+    #print(gene)
 
     aver_chromvar <- aver_chromvar_all[aver_chromvar_all$gene==motif,]
     aver_exp <- aver_exp_all[aver_exp_all$gene==gene,]
@@ -73,7 +72,6 @@ gene_motif_analysis <- function(object,motif_gene_df,aver_exp_all=NULL,aver_chro
 
   return(df.sig)
 }
-
 
 
 #' Calcualte the score of modules
@@ -273,3 +271,5 @@ adt_cci_analysis<-function(object,
 #'
 #' @export
 range01 <- function(x){(x-min(x))/(max(x)-min(x))}
+
+
