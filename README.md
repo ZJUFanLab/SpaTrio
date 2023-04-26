@@ -4,7 +4,7 @@
 
 # Revealing spatial multimodal heterogeneity in tissues with SpaTrio
 
-### Penghui Yang<sup></sup>,  Lijun Jin<sup></sup>, Liao Jie<sup></sup>, ..., Xiaohui Fan*
+### Penghui Yang<sup></sup>,  Lijun Jin<sup></sup>, Jie Liao<sup></sup>, ..., Xiaohui Fan*
 
 
 
