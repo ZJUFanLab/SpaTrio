@@ -78,6 +78,14 @@ To use SpaTrio we require five formatted `.csv` files as input (i.e. read in by 
 | ··· | ··· | ··· |
 | Celln | 5.98 | 2.16 |
 
+ - ref_counts.csv (The number of cells contained in each spot)
+
+|  | Celltype 1 | ··· | Celltype i |
+|--|--|--|--|
+| Spot1 | 0 | ··· | 2 |
+| ··· | ··· | ··· | ··· |
+| Spotj | 1 | ··· | 0 |
+
 We have included two test datasets ([demo1](tutorial/data/demo1) & [demo2](tutorial/data/demo2)) in the [tutorial/data/](tutorial/data/) of this repository as examples to show how to use SpaTrio to align cells to space. 
 
 Simulated data in the strip pattern:
