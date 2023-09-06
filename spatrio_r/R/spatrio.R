@@ -23,6 +23,7 @@
 
 spatrio <- function(
     input_path = getwd(),
+    ref_path = NULL,
     output_path = getwd(),
     py_path = NULL,
     spatrio_path = NULL,
@@ -75,6 +76,11 @@ spatrio <- function(
     ' --top_num ',top_num,
     ' --random ',random
   )
+
+  if (!is.null(ref_path)) {
+  cmd <- paste(cmd, ' --ref_path ', ref_path)
+  print(paste("Using the reference with a path of ",ref_path,sep = ""))
+  }
 
   # call SpaTrio
   system(
