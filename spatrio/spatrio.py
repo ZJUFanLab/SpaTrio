@@ -197,7 +197,8 @@ def assign_coord(
     out_data: pd.DataFrame, 
     non_zero_probabilities: bool = True,
     no_repeated_cells: bool = True,
-    top_num: int = 5,
+    top_num: int = None,
+    expected_num: pd.DataFrame = None,
     random: bool = False
     ) :
     """
@@ -209,18 +210,24 @@ def assign_coord(
         out_data:  Alignment results between spots and cells from previous step.
         non_zero_probabilities: Determines whether to remove 0 frome alignment results. Default=True.
         no_repeated_cells: Determines whether to allow a cell to be used multiple times when allocating coordinates. Default=True.
-        top_num: The maximum number of cells allocated in a spot, Default=5
+        top_num: The maximum number of cells allocated in a spot, Default=5.
+        expected_num: DataFrame specifying the expected number of cells per spot. Default is None.
         random: Determines whether to randomly assign cell coordinates or assign coordinates based on pearson correlation coefficient. Default=False.
-   
+        expected_num: DataFrame specifying the expected number of cells per spot. Default is None.
+    
+    Returns:
     Returns:
         - Spatial assignment of cells.
     """
     
     print('Assigning spatial coordinates to cells...')
-    print('top_num = '+str(top_num))
     print('random = '+str(random))
-    n1 = adata1.shape[0]
-    n2 = adata2.shape[0]
+    if top_num is not None:
+        print("Maximum number of cells assigned to spots: "+str(top_num))
+        cell_num = {spot: top_num for spot in pd.unique(adata1.obs_names)}
+    if expected_num is not None:
+        print("Determine the number of cells allocated to each spot based on the input information")
+        cell_num = expected_num['cell_num'].to_dict()
 
     if non_zero_probabilities :
         out_data = out_data[out_data['value']>0]
@@ -254,8 +261,13 @@ def assign_coord(
         res1 = res1.T.values  # (gene_num, 1)
         res1 = res1.reshape(res1.shape[0],)
         ratio_sub = nnls(res2, res1)[0]
-        ratio_sub = (ratio_sub / np.sum([ratio_sub], axis=1)[0]).tolist()
-        ratio_sub = np.round(np.array(ratio_sub)*top_num)
+        
+        ratio_sum = np.sum([ratio_sub], axis=1)[0]
+        if ratio_sum == 0:  # 如果sum为0，将所有元素设置为0
+            ratio_sub = [0] * len(ratio_sub)
+        else:
+            ratio_sub = (ratio_sub / ratio_sum).tolist()
+        ratio_sub = np.round(np.array(ratio_sub)*cell_num[spot])
         ratio_df.loc[spot] = ratio_sub
 
     meta1_dict = {
@@ -282,19 +294,20 @@ def assign_coord(
         decon_spot1 = pd.DataFrame(columns=out_data.columns)
         for cluster_id in range(0,len(spot_ratio)):
             cluster = spot_ratio.index[cluster_id]
-            cell_num = spot_ratio[cluster_id]
-            decon_spot_ot = spot_ot.loc[spot_ot['cell_type'] == cluster][0:int(cell_num)]
+            decon_num = spot_ratio[cluster_id]
+            decon_spot_ot = spot_ot.loc[spot_ot['cell_type'] == cluster][0:int(decon_num)]
             decon_spot1 = pd.concat([decon_spot1,decon_spot_ot])
         decon_num = decon_spot1.shape[0]
-        if decon_num < top_num:
+        if decon_num < cell_num[spot]:
             rest_spot_ot = spot_ot.drop(decon_spot1.index)
             rest_spot_ot = rest_spot_ot.sort_values(by="value",ascending=False)
-            decon_spot2 = rest_spot_ot.iloc[0:(top_num-decon_num)]
+            decon_spot2 = rest_spot_ot.iloc[0:(cell_num[spot]-decon_num)]
             decon_spot = pd.concat([decon_spot1,decon_spot2])
         elif decon_num > 0 :
             decon_spot = decon_spot1
         decon_df = pd.concat([decon_df,decon_spot])
-    out_data = decon_df.groupby('spot').apply(top_n, n=top_num, column='value')
+        
+    out_data = decon_df.groupby('spot').apply(lambda x: x.nlargest(cell_num[x.name], 'value'))
 
     # Adjust cell coord
     if random:
