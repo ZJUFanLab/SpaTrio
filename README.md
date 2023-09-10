@@ -45,7 +45,7 @@ install.packages("SpaTrio_1.0.0.tar.gz", repos = NULL, type = "source")
 ```
 
 ## Quick Start
-To use SpaTrio we require five formatted `.csv` files as input (i.e. read in by pandas). 
+To use SpaTrio we require formatted `.csv` files as input (i.e. read in by pandas). 
  - multi_rna.csv/spatial_rna.csv (The gene expression matrix of cells/spots)
 
 |  | Cell1 | ··· | Celln |
@@ -78,13 +78,24 @@ To use SpaTrio we require five formatted `.csv` files as input (i.e. read in by 
 | ··· | ··· | ··· |
 | Celln | 5.98 | 2.16 |
 
- - ref_counts.csv (The number of cells contained in each spot)
+At the same time, we also support additional specification of the number of cells in each spot.
+ - expected_num.csv (The number of cells contained in each spot)
+
+|  | cell_num |
+|--|--|
+| Spot1 | 5 | 
+| ··· | ··· | 
+| Spotj | 2 | 
+
+In some examples of simulated data, the number of cell types in the spot is given (ref_counts.csv). These data will be converted to expected_num for use.
+ - ref_counts.csv (The number of celltypes contained in each spot)
 
 |  | Celltype 1 | ··· | Celltype i |
 |--|--|--|--|
 | Spot1 | 0 | ··· | 2 |
 | ··· | ··· | ··· | ··· |
 | Spotj | 1 | ··· | 0 |
+
 
 We have included two test datasets ([demo1](tutorial/data/demo1) & [demo2](tutorial/data/demo2)) in the [tutorial/data/](tutorial/data/) of this repository as examples to show how to use SpaTrio to align cells to space. 
 
