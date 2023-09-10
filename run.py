@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(description='Spatrio argparse')
 
 # load_data
 parser.add_argument('--input_path', default=None, help='Path to read in input data')
-parser.add_argument('--ref_path', default=None, help='Path to read in reference data')
+parser.add_argument('--expected_num_path', default=None, help='Path to read in expected cell number')
 # process_input
 parser.add_argument('--marker_use', default=True, type=str2bool)
 parser.add_argument('--top_marker_num', default=100, type=int)
@@ -40,7 +40,7 @@ args = parser.parse_args()
 
 
 path = args.input_path
-ref_path = args.ref_path
+expected_num_path = args.expected_num_path
 top_num = args.top_num
 
 print('\n','***Spatrio is running***','\n')
@@ -66,14 +66,9 @@ emb = pd.read_csv(path+'/emb.csv', index_col=0)
 spot_ann.obsm['spatial'] = pos
 single_ann.obsm['reduction'] = emb
 
-if ref_path is not None:
-    ref_counts = pd.read_csv(ref_path,index_col=0)
-    ref_ratios = ref_counts.div(ref_counts.sum(axis=1), axis=0)
-    expected_num = pd.DataFrame({'cell_num':ref_counts.sum(axis=1).tolist()},index = ref_counts.index.values)
+if expected_num_path is not None:
+    expected_num = pd.read_csv(expected_num_path,index_col=0)
 elif top_num is not None:
-    tmp = pd.DataFrame({'spot': spot_ann.obs.index.tolist(), 'spot_type': spot_ann.obs['type']})
-    ref_counts = tmp.groupby(['spot', 'spot_type']).size().unstack(fill_value=0)*top_num
-    ref_ratios = ref_counts.div(ref_counts.sum(axis=1), axis=0)
     expected_num = None
 
 print('\n','***STEP2 PROCESS DATA***','\n')
