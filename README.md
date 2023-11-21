@@ -8,7 +8,7 @@
 
 
 
-SpaTrio is a computational tool based on optimal transport that can align single-cell multi-omics data in space while preserving spatial topology of the tissue section and local geometry of modality
+SpaTrio is a computational tool based on optimal transport that can align single-cell multi-omics data in space while preserving the spatial topology of the tissue section and local geometry of modality
 
 ![Image text](images/overview.png)
 
@@ -79,7 +79,7 @@ To use SpaTrio we require formatted `.csv` files as input (i.e. read in by panda
 | ··· | ··· | ··· |
 | Celln | 5.98 | 2.16 |
 
-At the same time, we also support additional specification of the number of cells in each spot.
+At the same time, we also support additional specifications of the number of cells in each spot.
  - expected_num.csv (The number of cells contained in each spot)
 
 |  | cell_num |
@@ -100,7 +100,7 @@ In some examples of simulated data, the number of cell types in the spot is give
 
 We have included two test datasets ([demo1](tutorial/data/demo1) & [demo2](tutorial/data/demo2)) in the [tutorial/data/](tutorial/data/) of this repository as examples to show how to use SpaTrio to align cells to space. 
 
-Simulated data in the strip pattern:
+Simulated data in the stripe pattern:
 * [Demonstration of SpaTrio on demo1 dataset](tutorial/1.demo1.ipynb)
 
 Simulated data in the ring pattern:
@@ -116,14 +116,14 @@ DBiT-seq mouse embryo datasets ([Google Drive](https://drive.google.com/drive/fo
  
 ## Tutorials
 
-We have applied spatrio on different tissues of multiple species, here we give step-by-step tutorials for all application scenarios. And preprocessed datasets used can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1fl8gXSBuV1yTH_ZpzH6TjfGgZcrFsrmX?usp=sharing).
+We have applied SpaTrio on different tissues of multiple species, here we give step-by-step tutorials for all application scenarios. And preprocessed datasets used can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1fl8gXSBuV1yTH_ZpzH6TjfGgZcrFsrmX?usp=sharing).
 
 
-* [Using spatrio to reconstruct and analyze single-cell multi-modal data of mouse cerebral cortex](tutorial/5.Mouse_brain_cortex.md)
+* [Using SpaTrio to reconstruct and analyze single-cell multi-modal data of mouse cerebral cortex](tutorial/5.Mouse_brain_cortex.md)
 
-* [Using spatrio to reconstruct and analyze single-cell multi-modal data of human steatosis liver](tutorial/6.Human_steatosis_liver.md)
+* [Using SpaTrio to reconstruct and analyze single-cell multi-modal data of human steatosis liver](tutorial/6.Human_steatosis_liver.md)
 
-* [Using spatrio to reconstruct and analyze single-cell multi-modal data of human breast cancer](tutorial/7.Human_breast_cancer.md)
+* [Using SpaTrio to reconstruct and analyze single-cell multi-modal data of human breast cancer](tutorial/7.Human_breast_cancer.md)
 
 ## About
 Should you have any questions, please feel free to contact the author of the manuscript, Mr. Penghui Yang (yangph@zju.edu.cn).
