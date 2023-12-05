@@ -5,6 +5,6 @@ scikit-learn==1.2.0
 scipy==1.8.1
 scanpy==1.9.1
 anndata==0.7.5
-igraph==0.9.11
+igraph==0.10.8
 louvain==0.7.1
 matplotlib==3.5.2
