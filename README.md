@@ -129,6 +129,5 @@ We have applied SpaTrio on different tissues of multiple species, here we give s
 Should you have any questions, please feel free to contact the author of the manuscript, Mr. Penghui Yang (yangph@zju.edu.cn).
 
 ## References
-
-
+Penghui Yang, et al. Revealing spatial multimodal heterogeneity in tissues with SpaTrio, Cell Genomics, 2023, https://doi.org/10.1016/j.xgen.2023.100446.
 
