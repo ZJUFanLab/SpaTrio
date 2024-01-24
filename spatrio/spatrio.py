@@ -263,7 +263,7 @@ def assign_coord(
         ratio_sub = nnls(res2, res1)[0]
         
         ratio_sum = np.sum([ratio_sub], axis=1)[0]
-        if ratio_sum == 0:  # 如果sum为0，将所有元素设置为0
+        if ratio_sum == 0:  
             ratio_sub = [0] * len(ratio_sub)
         else:
             ratio_sub = (ratio_sub / ratio_sum).tolist()
