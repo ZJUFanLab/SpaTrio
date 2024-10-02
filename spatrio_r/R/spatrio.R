@@ -52,7 +52,7 @@ spatrio <- function(
     stop("Requested SpaTrio directory does not exist")
   }
   # find python
-  if (!file.exists("/home/yph/anaconda3/envs/spatrio/bin/python")) {
+  if (!file.exists(py_path)) {
     stop("Please enter the correct python path")
   }else{
     print(paste("Using the Python interpreter with a path of ",py_path,sep = ""))

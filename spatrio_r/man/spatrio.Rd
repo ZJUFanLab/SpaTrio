@@ -6,6 +6,7 @@
 \usage{
 spatrio(
   input_path = getwd(),
+  ref_path = NULL,
   output_path = getwd(),
   py_path = NULL,
   spatrio_path = NULL,
